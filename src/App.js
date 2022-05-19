@@ -1,10 +1,14 @@
 //import logo from './logo.svg';
-import NameForm from './Zach-part.js';
+import './App.css'
+import Hangman from './components/Hangman';
+//import Webpage from './components/Webpage';
 
 function App() {
   return (
     <div className="App">
-        <NameForm />
+      <>
+        <Hangman />
+      </>
     </div>
   );
 }

@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom/client'
-export default class NameForm extends React.Component {
+import GameLogic from './GameLogic';
+//import ReactDOM from 'react-dom'
+
+export default class NameForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {word: '', value: ''};
 
+    //methods for this class
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -14,12 +17,18 @@ export default class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Word submitted: ' + this.state.value);
+    //alert('Word submitted: ' + this.state.value);
+    this.setState({
+      word: this.state.value
+    })
     event.preventDefault();
+    //console.log(this.state.value);
   }
+
 
   render() {
     return (
+      <>
       <form onSubmit={this.handleSubmit}>
         <label>
           Word input
@@ -27,11 +36,24 @@ export default class NameForm extends React.Component {
         </label>
         <input type="submit" value="Submit" />
       </form>
+      <div>
+        <h1>
+          Current word: {this.state.word}
+        </h1>
+        <h2>
+          Length: <GameLogic word={this.state.word} />
+        </h2>
+      </div>
+      </>
     );
   }
+
 }
 
-
-
+/*
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<NameForm />);
+root.render(
+  <NameForm />
+);
+*/
+
