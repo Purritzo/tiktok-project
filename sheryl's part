@@ -1,0 +1,51 @@
+class Hangman extends Component {
+    static defaultProps = {
+        maxWrong: 6
+    }
+    
+    constructor(props) {
+    super(props);
+    this.state = {
+      mistake: 0
+      guessed: new Set ([])
+      answer: Player1Word()
+    }
+  }
+  
+  handleGuess = e => {
+      let letter = e.target.value;
+      this.setState(st => ({
+        guessed: st.guessed.add(letter),
+        mistake: st.mistake + (st.answer.includes(letter) ? 0 : 1)
+      }));
+  }
+
+  guessedWord() {
+    return this.state.answer.split("").map(letter => (this.state.guessed.has(letter) ? letter : "_"));
+  }
+
+  generateButtons() {
+      return "abcdefghijklmnopqrstuvwxyz".split("").map(letter => (
+        <button
+            class='btn btn-lg btn-primary m-2'
+            key={letter}
+            value={letter}
+            onClick={this.handleGuess}
+            disabled={this.state.guessed.has(letter)}
+        > 
+            {letter}
+        </button>
+      ));
+  }
+  
+  render() {
+      const gameOver = this.state.mistake >= this.props.maxWrong
+      let gameStat = this.generateButtons();
+
+      return (
+          <div>
+              <p>Guess the word given by Player 1!</p>
+          </div>
+      )
+  }
+}
