@@ -3,6 +3,7 @@
 export default function checkLetter(event) {
   var temp = this.state.word_display
   var index = this.state.word.indexOf(event.target.value)
+  this.state.guessed.push(event.target.value)
   if (index !== -1){
     temp = temp.substring(0,index) + event.target.value + temp.substring(index+2)
     this.setState({
@@ -10,9 +11,11 @@ export default function checkLetter(event) {
     })
 
   } else {
-    this.setState({
-      guesses : this.state.guesses - 1
-    })
+    this.setState(function(state) {
+      return{
+        guesses : state.guesses - 1
+      };
+    });
   }
   this.checkEnd();
   event.preventDefault();

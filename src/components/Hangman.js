@@ -12,7 +12,14 @@ export default class Hangman extends Component {
   constructor(props){
     super(props)
     //properties belonging to this class
-    this.state = {stage : 1, word : '', guesses : 6, value : '', word_display : ''}
+    this.state = {
+      stage : 1, 
+      word : '', 
+      guesses : 6, 
+      value : '', 
+      word_display : '',
+      guessed : []
+    }
 
     //methods for this class, binding for javascript purposes
     this.handleChange = handleChange.bind(this);
@@ -39,20 +46,25 @@ export default class Hangman extends Component {
     }
 
     if (this.state.stage === 2){
-        const letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-        return (
-            <div>
-              <h1>
-                {this.state.word_display}
-              </h1>
-              <h2>
-                {letters.map(this.makeButton)}
-              </h2>
-              <h3>
-                  {this.state.guesses}
-              </h3>
-            </div>
-        )
+      if (this.checkEnd() === 0){
+        var resultMessage = ''
+      } else {
+        resultMessage = (this.checkEnd() === 1) ? `Player 1 wins! The word was ${this.state.word}` : 'Player 2 wins!'
+      }
+      const letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+      return (
+        <div>
+          <h1>
+            {this.state.word_display}
+          </h1>
+          <h2>
+            {resultMessage === '' ? letters.map(this.makeButton) : resultMessage}
+          </h2>
+          <h3>
+            Guesses Left: {this.state.guesses}
+          </h3>
+        </div>
+      )
     }
   }
 }
