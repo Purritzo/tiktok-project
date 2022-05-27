@@ -2,7 +2,7 @@
 export default function checkEnd() {
   if (this.state.guesses === 0){
     return 1
-  } else if (this.state.word === this.state.word_display) {
+  } else if (this.state.word === this.state.word_display.join('')) {
       return 2
   } else {
       return 0

@@ -6,6 +6,18 @@ import handleChange from './functions/handleChange';
 import handleSubmit from './functions/handleSubmit';
 import makeButton from './functions/makeButton';
 import checkEnd from './functions/checkEnd';
+import resetButton from './functions/resetButton';
+
+/*
+import './Hangman.css';
+import step0 from "./images/0.jpeg";
+import step1 from "./images/1.jpeg";
+import step2 from "./images/2.jpeg";
+import step3 from "./images/3.jpeg";
+import step4 from "./images/4.jpeg";
+import step5 from "./images/5.jpeg";
+import step6 from "./images/6.jpeg";
+*/
 
 export default class Hangman extends Component {
 
@@ -17,7 +29,7 @@ export default class Hangman extends Component {
       word : '', 
       guesses : 6, 
       value : '', 
-      word_display : '',
+      word_display : [],
       guessed : []
     }
 
@@ -27,6 +39,7 @@ export default class Hangman extends Component {
     this.checkLetter = checkLetter.bind(this);
     this.makeButton = makeButton.bind(this);
     this.checkEnd = checkEnd.bind(this);
+    this.resetButton = resetButton.bind(this);
   }
   
   //vital render function, outputs HTML
@@ -61,7 +74,10 @@ export default class Hangman extends Component {
             {resultMessage === '' ? letters.map(this.makeButton) : resultMessage}
           </h2>
           <h3>
-            Guesses Left: {this.state.guesses}
+            {resultMessage === '' ? `Guesses Left: ${this.state.guesses}` : 
+            <button onClick={this.resetButton}>
+              Play again?
+            </button>}
           </h3>
         </div>
       )
