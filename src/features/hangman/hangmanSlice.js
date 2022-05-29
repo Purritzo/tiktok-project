@@ -14,7 +14,7 @@ export const hangmanSlice = createSlice({
     reducers: {
       save_word: (state, action) => {
         if ((/^[a-zA-Z]+$/.test(action.payload)) && (action.payload.length > 0)){
-          state.word = action.payload;
+          state.word = action.payload.toUpperCase();
           state.stage = 2;
           state.word_display = Array(action.payload.length).fill('_ ')
         }
