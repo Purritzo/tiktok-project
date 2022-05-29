@@ -38,6 +38,7 @@ export const hangmanSlice = createSlice({
         state.value = '';
         state.word_display = [];
         state.guessed = [];
+        state.invalid_word = false;
 
       }
     },

@@ -65,7 +65,7 @@ export default function Hangman() {
     var buttons = []
     for (const letter of letters)  {
       buttons.push(
-      <button key={letter} onClick={(e) => CheckLetter(e)} disabled={guessed.includes(letter)} value={letter}>
+      <button className="letter" key={letter} onClick={(e) => CheckLetter(e)} disabled={guessed.includes(letter)} value={letter}>
       {letter}
       </button>
       )
