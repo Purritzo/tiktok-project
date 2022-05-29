@@ -49,7 +49,7 @@ export default function Hangman() {
           <input type="text" name="word" placeholder='Enter your word here'/>
         </label>
         <div>
-        <button class="submitButton">Submit your word</button>
+        <button className="submitButton">Submit your word</button>
         </div>
         {invalid_word === true &&
           <div>
