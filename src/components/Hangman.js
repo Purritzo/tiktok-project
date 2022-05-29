@@ -7,6 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { save_word, add_guess, wrongguess, updatedisplay, reset } from '../features/hangman/hangmanSlice'
 
 import './Hangman.css';
+import step0 from './images/0.jpg'
+import step1 from './images/1.jpg'
+import step2 from './images/2.jpg'
+import step3 from './images/3.jpg'
+import step4 from './images/4.jpg'
+import step5 from './images/5.jpg'
+import step6 from './images/6.jpg'
 
 export default function Hangman() {
   
@@ -17,6 +24,7 @@ export default function Hangman() {
   const guessed = useSelector(state => state.guessed)
   const invalid_word = useSelector(state => state.invalid_word)
   const dispatch = useDispatch()
+  var pictures = [step0,step1,step2,step3,step4,step5,step6]
   const CheckLetter = (x) => {
     dispatch(add_guess(x.target.value))
     var index = word.indexOf(x.target.value)
@@ -66,7 +74,8 @@ export default function Hangman() {
     var end_status = checkEnd(guesses,word,word_display)
     if (end_status === 0){
     return (
-      <div className="box">
+      <div className="playbox">
+        <img src={pictures[6-guesses]} alt=""></img>
         <h2>
           {word_display}
         </h2>
@@ -78,8 +87,10 @@ export default function Hangman() {
     )
     } else if (end_status === 1){
       return (
-        <>        
-        <div className="box">
+        <> 
+              
+        <div className="playbox">
+        <img src={pictures[6-guesses]} alt=""></img> 
           Player 1 wins!
         <div>
         <button onClick={() => dispatch(reset())}>
@@ -92,7 +103,9 @@ export default function Hangman() {
     } else if (end_status === 2){
       return(
       <>
-      <div className="box">
+      
+      <div className="playbox">
+      <img src={pictures[6-guesses]} alt=""></img>
         Player 2 wins!
       <div>
         <button onClick={() => dispatch(reset())}>
