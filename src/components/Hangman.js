@@ -93,7 +93,7 @@ export default function Hangman() {
         <img src={pictures[6-guesses]} alt=""></img> 
           Player 1 wins!
         <div>
-        <button onClick={() => dispatch(reset())}>
+        <button className="submitButton" onClick={() => dispatch(reset())}>
             Play again?
         </button>
         </div>
@@ -108,7 +108,7 @@ export default function Hangman() {
       <img src={pictures[6-guesses]} alt=""></img>
         Player 2 wins!
       <div>
-        <button onClick={() => dispatch(reset())}>
+        <button className="submitButton" onClick={() => dispatch(reset())}>
           Play again?
         </button>
       </div>
